@@ -1,6 +1,6 @@
 {
   "name": "ipfs-free",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "ipfs-free aggregates multiple IPFS platform uploading SDKs into a single, easy to use package.",
   "main": "lib/index.js",
   "repository": {
@@ -9,7 +9,7 @@
   },
   "types": "lib/types/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --build ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -19,6 +19,7 @@
     "lighthouse",
     "pinata",
     "web3.storage",
+    "web3",
     "4everland"
   ],
   "author": "iceHugh",

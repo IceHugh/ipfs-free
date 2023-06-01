@@ -59,7 +59,6 @@ class IpfsFree {
   async upload({ buffer }: IpfsFreeFile): Promise<IfpsFreeResponse> {
     const client = this.getUploadClinet();
     const hash = await calcCidV0(buffer);
-    console.log(hash)
     const res = await client.upload({ hash, buffer });
     return res;
   }

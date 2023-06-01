@@ -33,7 +33,6 @@ export class Filebase {
       Key: file.hash,
       VersionId: '1',
     });
-    console.log(Metadata);
     if (!Metadata) {
       throw new Error('Upload failed');
     }
