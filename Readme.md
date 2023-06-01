@@ -93,7 +93,6 @@ const { url, cid} = await ipfsFree.upload({
 
 ## Links
 
-- [Strapi website](https://strapi.io/)
 - [IPFS website](https://ipfs.tech/)
 - [Filebase website](https://filebase.com/)
 - [Pinata website](https://pinata.cloud/)
