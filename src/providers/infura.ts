@@ -22,7 +22,6 @@ export class Infura {
     }
     const form_data = new URLSearchParams();
     form_data.append('file', _file.stream());
-    console.log(this.config);
     const res = await axios.post(
       'https://ipfs.infura.io:5001/api/v0/add',
       form_data,

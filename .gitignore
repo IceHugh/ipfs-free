@@ -61,7 +61,7 @@ $RECYCLE.BIN/
 *.pid
 *.lock
 
-index.ts
+example.ts
 ############################
 # Logs and databases
 ############################
@@ -86,6 +86,7 @@ nbproject
 ############################
 
 lib-cov
+lib
 lcov.info
 pids
 logs

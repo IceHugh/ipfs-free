@@ -31,7 +31,6 @@ export class Everland {
     } else if (file.buffer) {
       params.Body = file.buffer;
     }
-    console.log(params);
     await this.client.putObject(params);
     const { Metadata } = await this.client.headObject({
       Bucket: this.config.bucket,
