@@ -86,7 +86,6 @@ nbproject
 ############################
 
 lib-cov
-lib
 lcov.info
 pids
 logs
