@@ -3,10 +3,11 @@ import {
   Provider,
   IpfsFreeOptions,
   IpfsFreeConfig,
-  IpfsFreeUploadFile,
+  IpfsFreeFile,
   IpfsFreeDeleteFile,
   IfpsFreeResponse,
 } from './types';
+import { calcCidV0 } from './utils/calcHash';
 
 class IpfsFree {
   private config: IpfsFreeConfig;
@@ -41,16 +42,25 @@ class IpfsFree {
     return _config;
   }
   async getDeleteClinet(url: string) {
-    let types: Provider[] = ['filebase', 'pinata', 'fleek', 'web3', 'lighthouse', 'everland'];
+    let types: Provider[] = [
+      'filebase',
+      'pinata',
+      'fleek',
+      'web3',
+      'lighthouse',
+      'everland',
+    ];
     const type = types.find((item) => url.indexOf(item) > -1) || 'web3';
     const Client = getProvider(type);
     const config = this.getProviderConfig(type);
     const client = new Client(config);
     return client;
   }
-  async upload(file: IpfsFreeUploadFile): Promise<IfpsFreeResponse> {
+  async upload({ buffer }: IpfsFreeFile): Promise<IfpsFreeResponse> {
     const client = this.getUploadClinet();
-    const res = await client.upload(file);
+    const hash = await calcCidV0(buffer);
+    console.log(hash)
+    const res = await client.upload({ hash, buffer });
     return res;
   }
   async delete(options: IpfsFreeDeleteFile) {

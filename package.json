@@ -29,6 +29,8 @@
     "@pinata/sdk": "^2.1.0",
     "aws-sdk": "^2.1386.0",
     "axios": "^1.4.0",
+    "cid-tool": "^3.0.0",
+    "ipfs-only-hash": "^4.0.0",
     "web3.storage": "^4.5.4"
   },
   "devDependencies": {

@@ -16,7 +16,7 @@ export class Pinata {
   async upload(file: IpfsFreeUploadFile) {
     const options: any = {
       pinataMetadata: {
-        name: `${file.hash}${file.ext}`,
+        name: file.hash,
       },
       pinataOptions: {
         cidVersion: 1,
@@ -26,11 +26,7 @@ export class Pinata {
     const _file: any = file;
     if (_file.buffer) {
       _file.stream = () => Readable.from(file.buffer as any);
-      _file.name = `${_file.hash}${_file.ext}`;
-    } else if (_file.stream) {
-      const s = _file.stream;
-      _file.name = `${_file.hash}${_file.ext}`;
-      _file.stream = s;
+      _file.name = _file.hash;
     }
     const res = await this.client.pinFileToIPFS(_file.stream(), options);
     const cid = res.IpfsHash;
@@ -40,11 +36,8 @@ export class Pinata {
     };
   }
   async delete(file: IpfsFreeDeleteFile) {
-    if (file.url) {
-      const cid = file.url.substring(
-        file.url.indexOf('/') + 2,
-        file.url.indexOf('.'),
-      );
+    const cid = file.hash;
+    if (cid) {
       const res = await this.client.unpin(cid);
       return Promise.resolve();
     }

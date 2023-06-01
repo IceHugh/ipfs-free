@@ -19,17 +19,13 @@ export class Web3 {
     const _file: any = file;
     if (_file.buffer) {
       _file.stream = () => Readable.from(file.buffer as any);
-    } else if (_file.stream) {
-      const s = _file.stream;
-      _file.name = `${_file.hash}${_file.ext}`;
-      _file.stream = s;
     }
     const cid = await this.client.put([_file as any], {
-      name: `${_file.hash}${_file.ext}`,
+      name: _file.hash,
       wrapWithDirectory: false,
     });
     return {
-      url: `https://${cid}.ipfs.w3s.link?from=web3`,
+      url: `https://${cid}.ipfs.dweb.link?from=web3`,
       cid,
     };
   }

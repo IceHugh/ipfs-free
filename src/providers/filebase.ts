@@ -23,31 +23,30 @@ export class Filebase {
   async upload(file: IpfsFreeUploadFile) {
     let params: any = {
       Bucket: this.config.bucket,
-      Key: `${file.hash}${file.ext}`,
+      Key: file.hash,
+      Body: file.buffer,
+      Metadata: {},
     };
-    if (file.stream) {
-      params.Body = file.stream;
-    } else if (file.buffer) {
-      params.Body = file.buffer;
-    }
-    await this.client.putObject(params);
+    await this.client.putObject(params, { requestTimeout: 1000 * 60 * 60 });
     const { Metadata } = await this.client.headObject({
       Bucket: this.config.bucket,
-      Key: `${file.hash}${file.ext}`,
+      Key: file.hash,
+      VersionId: '1',
     });
+    console.log(Metadata);
     if (!Metadata) {
       throw new Error('Upload failed');
     }
     const cid = Metadata['cid'];
     return {
-      url: `https://${cid}.ipfs.cf-ipfs.com?from=firebase`,
+      url: `https://ipfs.filebase.io/ipfs/${cid}?from=firebase`,
       cid,
     };
   }
-  async delete({ hash, ext }: IpfsFreeDeleteFile) {
+  async delete({ hash }: IpfsFreeDeleteFile) {
     const params = {
       Bucket: this.config.bucket,
-      Key: `${hash}${ext}`,
+      Key: hash,
     };
     await this.client.deleteObject(params);
     return Promise.resolve();

@@ -1,15 +1,13 @@
-import { Readable } from 'stream';
-
 export interface IpfsFreeUploadFile {
+  buffer: Buffer;
   hash: string;
-  ext: string;
-  stream?: () => Readable;
-  buffer?: Buffer;
+}
+export interface IpfsFreeFile {
+  buffer: Buffer;
 }
 
 export interface IpfsFreeDeleteFile {
   hash: string;
-  ext: string;
   url: string;
 }
 

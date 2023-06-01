@@ -18,37 +18,33 @@ export class Everland {
         secretAccessKey: config.secret,
       },
       region: 'us-west-2',
-      
     });
   }
   async upload(file: IpfsFreeUploadFile) {
     let params: any = {
       Bucket: this.config.bucket,
-      Key: `${file.hash}${file.ext}`,
+      Key: file.hash,
+      Body: file.buffer,
     };
-    if (file.stream) {
-      params.Body = file.stream;
-    } else if (file.buffer) {
-      params.Body = file.buffer;
-    }
+
     await this.client.putObject(params);
     const { Metadata } = await this.client.headObject({
       Bucket: this.config.bucket,
-      Key: `${file.hash}${file.ext}`,
+      Key: file.hash,
     });
     if (!Metadata) {
       throw new Error('Upload failed');
     }
     const cid = Metadata['ipfs-hash'];
     return {
-      url: `https://${cid}.ipfs.4everland.io?from=4everland`,
+      url: `https://${cid}.ipfs.dweb.link?from=4everland`,
       cid,
     };
   }
-  async delete({ hash, ext }: IpfsFreeDeleteFile) {
+  async delete({ hash }: IpfsFreeDeleteFile) {
     const params = {
       Bucket: this.config.bucket,
-      Key: `${hash}${ext}`,
+      Key:  hash,
     };
     await this.client.deleteObject(params);
     return Promise.resolve();
