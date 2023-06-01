@@ -4,7 +4,7 @@
   "description": "ipfs-free aggregates multiple IPFS platform uploading SDKs into a single, easy to use package.",
   "main": "index.js",
   "repository": {
-    "url": "https://github.com/IceHugh/zincsearch-node",
+    "url": "https://github.com/IceHugh/ipfs-free",
     "type": "git"
   },
   "types": "lib/types/index.d.ts",
