@@ -48,8 +48,60 @@ const { url, cid} = await ipfsFree.upload({
   buffer: <file buffer>,
 });
 ```
-## Documentation
-View the full documentation on the ipfs-free website.
+## options params
+
+- default (Specify to select one of config provider)
+- random (randomly choose one of config provider)
+
+## Filebase Variable [ [tutorial](https://docs.filebase.com/configurations/third-party-configurations/backup-client-configurations/strapi-provider-plugin) ]
+
+
+| Variable | Type   | Description            | Required |
+|----------|--------|------------------------|----------|
+| key      | string | Filebase access key    | yes      |
+| secret   | string | Filebase access secret | yes      |
+| bucket   | string | Filebase bucket name   | yes      |
+
+
+## Pinata Variable
+
+| Variable | Type   | Description          | Required |
+|----------|--------|----------------------|----------|
+| key      | string | Pinata access key    | yes      |
+| secret   | string | Pinata access secret | yes      |
+
+## 4Everland Variable
+
+| Variable | Type   | Description             | Required |
+|----------|--------|-------------------------|----------|
+| key      | string | 4Everland access key    | yes      |
+| secret   | string | 4Everland access secret | yes      |
+| bucket   | string | 4Everland bucket name   | yes      |
+
+
+## Web3 Variable
+
+| Variable | Type   | Description            | Required |
+|----------|--------|------------------------|----------|
+| token    | string | Web3 Storage API Token | yes      |
+
+## Lighthouse Variable
+
+| Variable | Type   | Description                  | Required |
+|----------|--------|------------------------------|----------|
+| token    | string | Lighthouse Storage API Token | yes      |
+
+## Links
+
+- [Strapi website](https://strapi.io/)
+- [IPFS website](https://ipfs.tech/)
+- [Filebase website](https://filebase.com/)
+- [Pinata website](https://pinata.cloud/)
+- [4Everland website](https://dashboard.4everland.org/)
+- [Web3 website](https://web3.storage/)
+- [Lighthouse website](https://lighthouse.storage/)
+
+---
 ## Contributing
 We welcome contributions to ipfs-free! Feel free to open an issue or pull request to add new features, fix bugs, or improve documentation.
 ## License
