@@ -21,7 +21,7 @@ export interface AuthorizationS3 extends AuthorizationKey {
 export interface Authorization {
   token: string;
 }
-export interface IpfsFreeConfig {
+export interface IpfsFreeProviders {
   filebase?: AuthorizationS3[];
   everland?: AuthorizationS3[];
   pinata?: AuthorizationKey[];
@@ -30,7 +30,7 @@ export interface IpfsFreeConfig {
   lighthouse?: Authorization[];
   infura?: AuthorizationKey[];
 }
-export type Provider = keyof IpfsFreeConfig;
+export type Provider = keyof IpfsFreeProviders;
 export interface IpfsFreeOptions {
   default?: Provider;
   random?: boolean;

@@ -2,7 +2,7 @@ import { getProvider } from './providers';
 import {
   Provider,
   IpfsFreeOptions,
-  IpfsFreeConfig,
+  IpfsFreeProviders,
   IpfsFreeFile,
   IpfsFreeDeleteFile,
   IfpsFreeResponse,
@@ -10,36 +10,36 @@ import {
 import { calcCidV0 } from './utils/calcHash';
 
 class IpfsFree {
-  private config: IpfsFreeConfig;
+  private providers: IpfsFreeProviders;
   private options: IpfsFreeOptions;
   // private clients = ['filebase', 'pinata', 'fleek', 'web3', 'lighthouse'];
-  constructor(config: IpfsFreeConfig, options?: IpfsFreeOptions) {
-    this.config = config;
+  constructor(providers: IpfsFreeProviders, options?: IpfsFreeOptions) {
+    this.providers = providers;
     this.options = options || {};
   }
   private getUploadClinet() {
     const { default: type = 'filebase', random } = this.options;
-    const currentConfigs = Object.keys(this.config) as Provider[];
-    const firstType = this.config[type] ? type : currentConfigs[0];
-    let clientType: Provider = firstType;
+    const currentConfigs = Object.keys(this.providers) as Provider[];
+    const providerType = this.providers[type] ? type : currentConfigs[0];
+    let clientType: Provider = providerType;
     if (random) {
       const index = Math.floor(Math.random() * currentConfigs.length);
       clientType = currentConfigs[index];
     }
     const Client = getProvider(clientType);
-    const config = this.getProviderConfig(clientType);
-    const client = new Client(config);
+    const providerConfig = this.getProviderConfig(clientType);
+    const client = new Client(providerConfig);
     return client;
   }
   getProviderConfig(type: Provider) {
-    const config = this.config[type];
-    let _config = config?.[0];
-    const configLen = config?.length;
+    const providerConfig = this.providers[type];
+    let _providerConfig = providerConfig?.[0];
+    const configLen = providerConfig?.length;
     if (configLen && configLen > 1) {
       const index = Math.floor(Math.random() * configLen);
-      _config = config[index];
+      _providerConfig = providerConfig[index];
     }
-    return _config;
+    return _providerConfig;
   }
   async getDeleteClinet(url: string) {
     let types: Provider[] = [
@@ -52,8 +52,8 @@ class IpfsFree {
     ];
     const type = types.find((item) => url.indexOf(item) > -1) || 'web3';
     const Client = getProvider(type);
-    const config = this.getProviderConfig(type);
-    const client = new Client(config);
+    const proveiderConfig = this.getProviderConfig(type);
+    const client = new Client(proveiderConfig);
     return client;
   }
   async upload({ buffer }: IpfsFreeFile): Promise<IfpsFreeResponse> {
