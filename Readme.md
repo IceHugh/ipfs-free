@@ -14,31 +14,31 @@ npm install ipfs-free
 import IpfsFree from 'ipfs-free';
 const ipfsFree = new IpfsFree(
   {
-    web3: {
+    web3: [{
       token: <web3.storage token>,
-    },
-    everland: {
+    }],
+    everland: [{
       key: '',
       secret: '',
       bucket: '',
-    },
-    pinata: {
+    }],
+    pinata: [{
       key: '',
       secret:
         '',
-    },
-    lighthouse: {
+    }],
+    lighthouse: [{
       token: '',
-    },
-    filebase: {
+    }],
+    filebase: [{
       key: '',
       secret: '',
       bucket: '',
-    },
-    infura: {
+    }],
+    infura: [{
       key: '',
       secret: '',
-    },
+    }],
   },
   { default: 'infura', random: true },
 );
