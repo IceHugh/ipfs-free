@@ -22,7 +22,6 @@ export class Pinata {
         cidVersion: 1,
       },
     };
-    // const readableStreamForFile = Readable.from(file.buffer as any);
     const _file: any = file;
     if (_file.buffer) {
       _file.stream = () => Readable.from(file.buffer as any);

@@ -1,6 +1,6 @@
 {
   "name": "ipfs-free",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "ipfs-free aggregates multiple IPFS platform uploading SDKs into a single, easy to use package.",
   "main": "lib/index.js",
   "repository": {
