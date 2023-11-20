@@ -38,7 +38,7 @@ export class Filebase {
     }
     const cid = Metadata['cid'];
     return {
-      url: `https://ipfs.io/ipfs/${cid}?from=firebase`,
+      url: `https://ipfs.filebase.io/ipfs/${cid}?from=firebase`,
       cid,
     };
   }
